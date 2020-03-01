@@ -3,7 +3,7 @@ import Movie from './Movie';
 
 function MovieResults({ movies, openPopup }) {
     return (
-        <section className="movie-results">
+        <div className="movie-results">
             <ul className="movie-results__list">
                 {
                     movies.map((movie, key) => (
@@ -11,7 +11,7 @@ function MovieResults({ movies, openPopup }) {
                     ))
                 }
             </ul>
-        </section>
+        </div>
     );
 }
 

@@ -4,27 +4,27 @@ function Popup({ closePopup, selectedMovie }) {
 
     //Adds a movie into the DB 
     const addMovieToWatch = () => {
-        console.log('MOVIE ADDED')
+        console.log('MOVIE ADDED', selectedMovie)
     }
 
     return (
         <section onClick={() => closePopup()} className="popup-container">
             <img className="popup-container__img" src={selectedMovie.Poster} alt="movie-poster"></img>
             <div className="popup-container__desc">
-                <h3>{selectedMovie.Title}</h3>
-                <p>{selectedMovie.Year}</p>
-                <p>{selectedMovie.Released}</p>
-                <p>{selectedMovie.Runtime}</p>
-                <p>{selectedMovie.Genre}</p>
-                <p>{selectedMovie.Director}</p>
-                <p>{selectedMovie.Writer}</p>
-                <p>{selectedMovie.Actors}</p>
-                <p>{selectedMovie.Plot}</p>
-                <p>{selectedMovie.Language}</p>
-                <p>{selectedMovie.Country}</p>
-                <p>{selectedMovie.Awards}</p>
+                <h3 className="popup-container__desc-title">{selectedMovie.Title}</h3>
+                <p className="popup-container__desc-year">{selectedMovie.Year}</p>
+                <p className="popup-container__desc-runtime">{selectedMovie.Runtime}</p>
+                <p className="popup-container__desc-genre">{selectedMovie.Genre}</p>
+                <p className="popup-container__desc-director"><span>Director:</span> {selectedMovie.Director}</p>
+                <p className="popup-container__desc-actors"><span>Actors:</span> {selectedMovie.Actors}</p>
+                <div className="line"></div>
+                <p className="popup-container__desc-plot"><span>Plot: </span>{selectedMovie.Plot}</p>
+                <div className="line"></div>
+                <p className="popup-container__desc-lang"><span>Languages:</span> {selectedMovie.Language}</p>
+                <p className="popup-container__desc-country"><span>Country:</span> {selectedMovie.Country}</p>
+                <p className="popup-container__desc-awards"><span>Awards:</span> {selectedMovie.Awards}</p>
             </div>
-            <button onClick={() => addMovieToWatch()}>Add to my list</button>
+            <button className="popup-container__btn" onClick={() => addMovieToWatch()}>Add to my list</button>
         </section>
     );
 }

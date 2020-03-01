@@ -1,12 +1,14 @@
 import React from 'react';
-// import MoviePlaceholder from '../assets/images/movie_placeholder.png';
+import MovieIcon from '../../assets/images/movieicon1.png';
 
 function Movie({ movie, openPopup }) {
     return (
         <li onClick={() => openPopup(true, movie.imdbID)} className="movie-results__list-item">
-            <h2>{movie.Title}</h2>
-            {/* <img src={movie.Poster !== 'N/A' ? movie.Poster : MoviePlaceholder} alt="movie-poster"></img> */}
-            <img src={movie.Poster} alt="movie-poster"></img>
+            <div className="title-container">
+            <img className="movie-icon" src={MovieIcon} alt="movie icon"></img>
+            <h2 className="title">{movie.Title}</h2>
+            </div>
+            <img className="poster" src={movie.Poster} alt="movie poster"></img>
 
         </li>
     )

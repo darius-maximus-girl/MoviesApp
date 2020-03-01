@@ -1,20 +1,21 @@
-@import './styles/exportAll.scss';
+@import "./styles/exportAll.scss";
 
 body {
-  background-color: rgb(53, 53, 71);
+  // background-color: rgb(53, 53, 71);
+}
+
+html {
+  --thumbBG: rgb(148, 69, 223);
 }
 
 .App {
-  text-align: center;
-  // background: url('./assets/images/road.jpg');
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position: center;
-  // background-attachment: fixed;
   height: 100vh;
-  width: 100vw;
   margin: 0;
-  padding-top: 90px;
+  padding-top: 200px;
+
+  @media #{$small} {
+    padding-top: 90px;
+  }
 }
 
 .static-background {
@@ -24,9 +25,9 @@ body {
   height: 100vh;
   width: 100vw;
   z-index: -1;
-  background: url('./assets/images/road.jpg');
+  background: url("./assets/images/shapes.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top;
+  opacity: 0.9;
 }
-

@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 function MoviesCarousel({ recentlySearched }) {
 
     const settings = {
-        infinite: false,
+        infinite: true,
         arrows: true,
         speed: 300,
         autoplay: true,
