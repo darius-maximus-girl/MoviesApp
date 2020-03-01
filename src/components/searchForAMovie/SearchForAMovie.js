@@ -43,9 +43,7 @@ function SearchForAMovie() {
                 //Adds a movie recently searched to DB and to the end of the slider 
                 recentlySearchedDB.push({
                     title: movie.Title,
-                    poster: movie.Poster,
-                    // year: movie.Year,
-                    // country: movie.Country,
+                    poster: movie.Poster
                 });
 
                 setSelectedMovie(movie);

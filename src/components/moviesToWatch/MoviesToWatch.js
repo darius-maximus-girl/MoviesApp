@@ -5,13 +5,14 @@ const moviesToWatchDB = database.ref('moviesToWatch/');
 
 function MoviesToWatch() {
 
+    //FUTURE: Add 'mark as watched' functionality (checkbox which adds class with greyscale if watched === true // it would update the moviesToWatchDB)
+
     const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
 
     useEffect(() => {
         moviesToWatchDB.on("value", function (snapshot) {
             let movies = snapshot.val();
             setMyMoviesToWatch(movies);
-            console.log('MOVIES FROM DB', movies);
         }, function (error) {
             console.log("Error: " + error.code);
         });
@@ -24,20 +25,18 @@ function MoviesToWatch() {
 
     //Gets a list of moviesToWatch from the db after the app is fired
     return (
-        <section>
-            MY MOVIES
-            <div>
-                {Object.values(myMoviesToWatch).map((el, key) => {
-                    console.log(el)
+        <section className="towatch-container">
+                {Object.values(myMoviesToWatch).map((movie, key) => {
                     return (
-                        <div key={key}>
-                            <p>{el.title}</p>
-                            <p>{el.year}</p>
-                            {/* <button onClick={() => removeMovie()}></button> */}
+                        <div className="towatch__item" key={key}>
+                            <p className="towatch__item-title">{movie.title}</p>
+                            <img className="towatch__item-poster" src={movie.poster} alt="movie poster"></img>
+                            <p className="towatch__item-year">{movie.year}</p>
+                            <p className="towatch__item-time">{movie.time}</p>
+                            <button className="towatch__item-rmvbtn" onClick={() => removeMovie()}>Delete</button>
                         </div>
                     )
                 })}
-            </div>
         </section>
     );
 }

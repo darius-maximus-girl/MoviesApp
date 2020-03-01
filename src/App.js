@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     document.addEventListener('scroll', () => {
       const top = window.scrollY > 30;
-      console.log(true)
       if (top !== isTop) {
         setIsTop({ top })
       } else {

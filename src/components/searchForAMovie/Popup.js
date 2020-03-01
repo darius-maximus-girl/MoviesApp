@@ -1,10 +1,18 @@
 import React from 'react';
+import { database } from '../firebase';
+
+let moviesToWatchDB = database.ref('moviesToWatch/');
 
 function Popup({ closePopup, selectedMovie }) {
 
     //Adds a movie into the DB 
-    const addMovieToWatch = () => {
-        console.log('MOVIE ADDED', selectedMovie)
+    const addMovieToWatch = (movie) => {
+        moviesToWatchDB.push({
+            title: movie.Title,
+            poster: movie.Poster,
+            year: movie.Year,
+            time: movie.Runtime
+        })
     }
 
     return (
@@ -24,7 +32,7 @@ function Popup({ closePopup, selectedMovie }) {
                 <p className="popup-container__desc-country"><span>Country:</span> {selectedMovie.Country}</p>
                 <p className="popup-container__desc-awards"><span>Awards:</span> {selectedMovie.Awards}</p>
             </div>
-            <button className="popup-container__btn" onClick={() => addMovieToWatch()}>Add to my list</button>
+            <button className="popup-container__btn" onClick={() => addMovieToWatch(selectedMovie)}>Add to my list</button>
         </section>
     );
 }

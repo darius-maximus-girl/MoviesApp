@@ -1,0 +1,78 @@
+.towatch-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // padding: 20px;
+
+  @media #{$small} {
+    margin: 0 auto;
+    background-color: rgba(136, 82, 214, 0.43);
+    width: 80%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 29px 0px rgba(26, 21, 21, 0.397);
+  }
+
+  .towatch__item {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.658);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 29px 0px rgba(26, 21, 21, 0.597);
+
+    @media #{$small} {
+      max-width: 200px;
+    }
+
+    &-title {
+      margin-bottom: 5px;
+      color: #6e4ebb;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      height: 40px;
+    }
+
+    &-poster {
+      width: 90px;
+      border: 3px solid white;
+      margin-bottom: 10px;
+    }
+
+    &-year {
+      color: rgb(218, 81, 148);
+      font-size: 10px;
+    }
+
+    &-time {
+      margin-bottom: 10px;
+      font-size: 10px;
+      color: rgb(218, 81, 148);
+    }
+
+    &-rmvbtn {
+      background-color: rgb(218, 81, 148);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: $primary-font;
+      color: white;
+      border: none;
+      padding: 6px;
+      transition: 0.5s;
+      cursor: pointer;
+
+      &:hover {
+          background-color: rgba(136, 82, 214, 0.43);
+          transform: scale(.9);
+      }
+    }
+  }
+}
