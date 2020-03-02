@@ -5,8 +5,6 @@ const moviesToWatchDB = database.ref('moviesToWatch/');
 
 function MoviesToWatch() {
 
-    //FUTURE: Add 'mark as watched' functionality (checkbox which adds class with greyscale if watched === true // it would update the moviesToWatchDB)
-
     const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
 
     useEffect(() => {
@@ -18,12 +16,10 @@ function MoviesToWatch() {
         });
     }, []);
 
-    //Function that gets the key of the current movie and removes it from DB
     const removeMovie = (key) => {
-        return key
+        database.ref(`moviesToWatch/${key}`).remove()
     }
 
-    //Gets a list of moviesToWatch from the db after the app is fired
     return (
         <section className="towatch-container">
                 {Object.values(myMoviesToWatch).map((movie, key) => {
@@ -33,7 +29,7 @@ function MoviesToWatch() {
                             <img className="towatch__item-poster" src={movie.poster} alt="movie poster"></img>
                             <p className="towatch__item-year">{movie.year}</p>
                             <p className="towatch__item-time">{movie.time}</p>
-                            <button className="towatch__item-rmvbtn" onClick={() => removeMovie()}>Delete</button>
+                            <button className="towatch__item-rmvbtn" onClick={() => removeMovie(movie.id)}>Delete</button>
                         </div>
                     )
                 })}

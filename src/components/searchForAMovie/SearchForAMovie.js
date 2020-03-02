@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import MovieResults from './MovieResults';
 import Popup from './Popup';
-// import { database } from '../compontents/firebase';
 import { database } from '../firebase';
 import MoviesCarousel from './MoviesCarousel';
 
@@ -25,6 +24,10 @@ function SearchForAMovie() {
         });
     }, []);
 
+    useEffect(() => {
+        console.log(recentlySearched)
+    }, [recentlySearched]);
+
     const handleMovies = (data) => {
         setMovies(data);
     }
@@ -40,10 +43,12 @@ function SearchForAMovie() {
                 let keyOfFirstMovie = Object.keys(recentlySearched)[0];
                 recentlySearchedDB.child(keyOfFirstMovie).remove();
 
-                //Adds a movie recently searched to DB and to the end of the slider 
+                //Adds a movie recently searched to DB and to the end of the slider
+                console.log('HELLO', movie)
+                
                 recentlySearchedDB.push({
                     title: movie.Title,
-                    poster: movie.Poster
+                    poster: movie.Poster,
                 });
 
                 setSelectedMovie(movie);

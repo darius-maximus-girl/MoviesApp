@@ -11,7 +11,9 @@ function Popup({ closePopup, selectedMovie }) {
             title: movie.Title,
             poster: movie.Poster,
             year: movie.Year,
-            time: movie.Runtime
+            time: movie.Runtime,
+        }).then((snapshot) => {
+            moviesToWatchDB.child(snapshot.key).update({ "id": snapshot.key })
         })
     }
 
