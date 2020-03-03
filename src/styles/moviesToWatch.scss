@@ -58,21 +58,38 @@
       color: rgb(218, 81, 148);
     }
 
-    &-rmvbtn {
-      background-color: rgb(218, 81, 148);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: $primary-font;
-      color: white;
-      border: none;
-      padding: 6px;
-      transition: 0.5s;
-      cursor: pointer;
+    &-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      &:hover {
-          background-color: rgba(136, 82, 214, 0.43);
-          transform: scale(.9);
+      .rmvbtn {
+        background-color: rgb(218, 81, 148);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: $primary-font;
+        color: white;
+        border: none;
+        padding: 6px;
+        transition: 0.5s;
+        cursor: pointer;
+  
+        &:hover {
+            background-color: rgba(136, 82, 214, 0.43);
+            transform: scale(.9);
+        }
       }
+
     }
+  }
+}
+
+.watched {
+  filter: grayscale(1);
+  transition: 1s;
+  cursor: pointer;
+
+  &:hover {
+    filter: grayscale(0)
   }
 }
