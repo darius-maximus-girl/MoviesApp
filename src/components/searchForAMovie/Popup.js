@@ -3,7 +3,7 @@ import { database } from '../firebase';
 
 let moviesToWatchDB = database.ref('moviesToWatch/');
 
-function Popup({ closePopup, selectedMovie }) {
+function Popup({ closePopup, selectedMovie, showMessage }) {
 
     //Adds a movie into the DB 
     const addMovieToWatch = (movie) => {
@@ -16,6 +16,8 @@ function Popup({ closePopup, selectedMovie }) {
         }).then((snapshot) => {
             moviesToWatchDB.child(snapshot.key).update({ "id": snapshot.key })
         })
+
+        showMessage(true)
     }
 
     return (

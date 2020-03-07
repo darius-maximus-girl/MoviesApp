@@ -20,7 +20,7 @@ function MoviesToWatch() {
         database.ref(`moviesToWatch/${key}`).remove()
     }
 
-    const handleAlreadySeen = (key, value) => {
+    const handleWatched = (key, value) => {
         database.ref(`moviesToWatch/${key}`).update({watched: !value})
     }
 
@@ -36,7 +36,7 @@ function MoviesToWatch() {
                         <div className="towatch__item-btns">
                             <button className="rmvbtn" onClick={() => removeMovie(movie.id)}>Delete</button>
                             <label className="checkbox-container">
-                                <input type="checkbox" onChange={() => handleAlreadySeen(movie.id, movie.watched)} checked={movie.watched} />
+                                <input type="checkbox" onChange={() => handleWatched(movie.id, movie.watched)} checked={movie.watched} />
                                 <span className="checkmark"></span>
                             </label>
                         </div>

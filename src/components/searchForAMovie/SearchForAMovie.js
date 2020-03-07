@@ -4,6 +4,7 @@ import MovieResults from './MovieResults';
 import Popup from './Popup';
 import { database } from '../firebase';
 import MoviesCarousel from './MoviesCarousel';
+import Message from './Message';
 
 const apiKey = 'http://www.omdbapi.com/?apikey=c5a141fa&';
 let recentlySearchedDB = database.ref('movies/');
@@ -14,6 +15,7 @@ function SearchForAMovie() {
     const [popup, setPopup] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState({});
     const [recentlySearched, setRecentlySearched] = useState([]);
+    const [movieAddedMsg, setMovieAddedMsg] = useState(false);
 
     useEffect(() => {
         recentlySearchedDB.on("value", function (snapshot) {
@@ -45,7 +47,7 @@ function SearchForAMovie() {
 
                 //Adds a movie recently searched to DB and to the end of the slider
                 console.log('HELLO', movie)
-                
+
                 recentlySearchedDB.push({
                     title: movie.Title,
                     poster: movie.Poster,
@@ -63,13 +65,21 @@ function SearchForAMovie() {
         setSelectedMovie({});
     }
 
+    const showMessage = (val) => {   
+        setMovieAddedMsg(val);
+        setTimeout(() => {
+            setMovieAddedMsg(false)
+        }, 1800);
+    }
+
     return (
-            <section className="header">
-                <MoviesCarousel recentlySearched={recentlySearched} />
-                <SearchBar apiKey={apiKey} handleMovies={handleMovies} />
-                <MovieResults movies={movies} openPopup={openPopup} />
-                {popup && <Popup closePopup={closePopup} selectedMovie={selectedMovie} />}
-            </section>
+        <section className="header">
+            <MoviesCarousel recentlySearched={recentlySearched} />
+            <SearchBar apiKey={apiKey} handleMovies={handleMovies} />
+            <MovieResults movies={movies} openPopup={openPopup} />
+            {popup && <Popup closePopup={closePopup} selectedMovie={selectedMovie} showMessage={showMessage} />}
+            {movieAddedMsg && <Message />}
+        </section>
     );
 }
 
