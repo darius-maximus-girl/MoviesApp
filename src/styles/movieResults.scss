@@ -47,7 +47,13 @@
           text-transform: uppercase;
           padding: 10px;
           color: white;
-          height: 60px;
+          height: 55px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-word;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
         }
 
         .movie-icon {

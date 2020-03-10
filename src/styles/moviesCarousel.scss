@@ -19,9 +19,15 @@
       .carousel-item {
         padding: 10px;
         position: relative;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         &__title {
-          height: 40px;
+          width: 160px;
+          margin-bottom: 10px;
+          height: 60px;
           color:#f8f9fa;
           font-size: 12px;
           font-weight: bold;

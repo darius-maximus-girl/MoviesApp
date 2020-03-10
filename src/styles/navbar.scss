@@ -28,6 +28,10 @@
       flex-direction: row;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     &-item {
       margin: 5px;
       border: 1px solid $btn-border;
@@ -36,16 +40,12 @@
       width: 150px;
       font-size: 12px;
       transition: 0.9s;
+      color: white;
       cursor: pointer;
       text-align: center;
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
-      }
-
-      a {
-        color: white;
-        text-decoration: none;
       }
 
       @media #{$small} {

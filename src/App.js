@@ -25,12 +25,16 @@ function App() {
       <div className="App">
         <nav className={isTop ? "navbar navbar-on-scroll" : "navbar "}>
           <ul className="navbar__links">
-            <li className="navbar__links-item">
-              <Link to="/">Search movies</Link>
+            <Link to="/">
+              <li className="navbar__links-item">
+                Search movies
             </li>
-            <li className="navbar__links-item">
-              <Link to="/moviestowatch">Movies to watch</Link>
+            </Link>
+            <Link to="/moviestowatch">
+              <li className="navbar__links-item">
+                Movies to watch
             </li>
+            </Link>
           </ul>
         </nav>
 
