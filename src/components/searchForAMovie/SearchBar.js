@@ -11,7 +11,6 @@ const SearchBar = ({ apiKey, handleMovies }) => {
                 return response.json();
             })
             .then(function (movies) {
-                console.log(movies.Search);
                 handleMovies(movies.Search)
                 setUserTitle('');
             })

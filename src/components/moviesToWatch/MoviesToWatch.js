@@ -6,47 +6,21 @@ const moviesToWatchDB = database.ref('moviesToWatch/');
 function MoviesToWatch() {
 
     const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
-    // const [watchedNum, setWatchedNum] = useState(0);
-    // const [toWatchNum, setToWatchNum] = useState(0);
-
-    // const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
-
-    // useEffect(() => {
-    //     const dispose = moviesToWatchDB.on("value", function (snapshot) {
-    //         let movies = snapshot.val();
-    //         setMyMoviesToWatch(movies);
-    //     }, function (error) {
-    //         console.log("Error: " + error.code);
-    //     });
-    //     return () => dispose()
-    // }, []);
 
     useEffect(() => {
-        moviesToWatchDB.on("value", function (snapshot) {
+        let dispose = moviesToWatchDB.on("value", function (snapshot) {
             let movies = snapshot.val();
             setMyMoviesToWatch(movies);
         }, function (error) {
             console.log("Error: " + error.code);
         });
+
+        return () => moviesToWatchDB.off("value", dispose);
     }, []);
 
-    const moviesList = Object.values(myMoviesToWatch)
-    const watchedNum = moviesList.filter(movie => movie.watched)
-    const toWatchNum = moviesList.filter(movie => !movie.watched)
-
-    // useEffect(() => {
-    //     let watched = Object.values(myMoviesToWatch).filter(movie => {
-    //         return movie.watched === true
-    //     });
-    //     setWatchedNum(watched.length);
-
-    //     let toWatch = Object.values(myMoviesToWatch).filter(movie => {
-    //         return movie.watched === false
-    //     });
-
-    //     setToWatchNum(toWatch.length);
-
-    // }, [myMoviesToWatch]);
+    const moviesList = Object.values(myMoviesToWatch);
+    const watchedNum = moviesList.filter(movie => movie.watched);
+    const toWatchNum = moviesList.filter(movie => !movie.watched);
 
     const removeMovie = (key) => {
         database.ref(`moviesToWatch/${key}`).remove()

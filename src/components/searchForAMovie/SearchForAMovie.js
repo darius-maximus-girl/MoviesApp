@@ -18,12 +18,14 @@ function SearchForAMovie() {
     const [movieAddedMsg, setMovieAddedMsg] = useState(false);
 
     useEffect(() => {
-        recentlySearchedDB.on("value", function (snapshot) {
+        let dispose = recentlySearchedDB.on("value", function (snapshot) {
             let recentlySearchedMoviesDB = snapshot.val();
             setRecentlySearched(recentlySearchedMoviesDB);
         }, function (error) {
             console.log("Error: " + error.code);
         });
+
+        return () => recentlySearchedDB.off("value", dispose);
     }, []);
 
     const handleMovies = (data) => {
@@ -42,8 +44,6 @@ function SearchForAMovie() {
                 recentlySearchedDB.child(keyOfFirstMovie).remove();
 
                 //Adds a movie recently searched to DB and to the end of the slider
-                console.log('HELLO', movie)
-
                 recentlySearchedDB.push({
                     title: movie.Title,
                     poster: movie.Poster,
