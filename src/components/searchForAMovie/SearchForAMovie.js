@@ -26,10 +26,6 @@ function SearchForAMovie() {
         });
     }, []);
 
-    useEffect(() => {
-        console.log(recentlySearched)
-    }, [recentlySearched]);
-
     const handleMovies = (data) => {
         setMovies(data);
     }
@@ -65,7 +61,7 @@ function SearchForAMovie() {
         setSelectedMovie({});
     }
 
-    const showMessage = (val) => {   
+    const showMessage = (val) => {
         setMovieAddedMsg(val);
         setTimeout(() => {
             setMovieAddedMsg(false)

@@ -6,6 +6,20 @@ const moviesToWatchDB = database.ref('moviesToWatch/');
 function MoviesToWatch() {
 
     const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
+    // const [watchedNum, setWatchedNum] = useState(0);
+    // const [toWatchNum, setToWatchNum] = useState(0);
+
+    // const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
+
+    // useEffect(() => {
+    //     const dispose = moviesToWatchDB.on("value", function (snapshot) {
+    //         let movies = snapshot.val();
+    //         setMyMoviesToWatch(movies);
+    //     }, function (error) {
+    //         console.log("Error: " + error.code);
+    //     });
+    //     return () => dispose()
+    // }, []);
 
     useEffect(() => {
         moviesToWatchDB.on("value", function (snapshot) {
@@ -16,16 +30,38 @@ function MoviesToWatch() {
         });
     }, []);
 
+    const moviesList = Object.values(myMoviesToWatch)
+    const watchedNum = moviesList.filter(movie => movie.watched)
+    const toWatchNum = moviesList.filter(movie => !movie.watched)
+
+    // useEffect(() => {
+    //     let watched = Object.values(myMoviesToWatch).filter(movie => {
+    //         return movie.watched === true
+    //     });
+    //     setWatchedNum(watched.length);
+
+    //     let toWatch = Object.values(myMoviesToWatch).filter(movie => {
+    //         return movie.watched === false
+    //     });
+
+    //     setToWatchNum(toWatch.length);
+
+    // }, [myMoviesToWatch]);
+
     const removeMovie = (key) => {
         database.ref(`moviesToWatch/${key}`).remove()
     }
 
     const handleWatched = (key, value) => {
-        database.ref(`moviesToWatch/${key}`).update({watched: !value})
+        database.ref(`moviesToWatch/${key}`).update({ watched: !value })
     }
 
     return (
         <section className="towatch-container">
+            <div className="towatch-counter">
+                <p>To watch <span>{toWatchNum.length}</span></p>
+                <p>Just seen <span>{watchedNum.length}</span></p>
+            </div>
             {Object.values(myMoviesToWatch).map((movie, key) => {
                 return (
                     <div className={movie.watched ? "towatch__item" : "towatch__item watched"} key={key}>
