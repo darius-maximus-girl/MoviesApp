@@ -6,7 +6,7 @@ import { database } from '../firebase';
 import MoviesCarousel from './MoviesCarousel';
 import Message from './Message';
 
-const apiKey = 'http://www.omdbapi.com/?apikey=c5a141fa&';
+const apiKey = 'https://www.omdbapi.com/?apikey=c5a141fa&';
 let recentlySearchedDB = database.ref('movies/');
 
 function SearchForAMovie() {

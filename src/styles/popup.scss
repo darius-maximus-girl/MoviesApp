@@ -20,6 +20,7 @@
     padding: 20px;
     padding-top: 160px;
     cursor: pointer;
+    height: 100%;
 
     @media #{$small} {
       width: 80%;
@@ -164,11 +165,15 @@
     border-radius: 20px;
     color: white;
     padding: 75px;
-    width: 50%;
+    width: 80%;
     text-align: center;
     color: white;
     line-height: 25px;
     letter-spacing: 1.5px;
     max-width: 500px;
+
+    @media #{$small} {
+      width: 50%;
+    }
   }
 }
