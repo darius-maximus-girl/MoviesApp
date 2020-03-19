@@ -7,7 +7,7 @@ function MoviesCarousel({ recentlySearched }) {
         infinite: true,
         arrows: true,
         speed: 300,
-        // autoplay: true,
+        autoplay: true,
         slidesToShow: 4,
         slidesToScroll: 4,
         responsive: [
