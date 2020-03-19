@@ -1,3 +1,5 @@
+You can see this project here: https://movies-app-bd9f6.firebaseapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
