@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../firebase';
+import MovieDetails from './MovieDetails';
+import Rating from '@mui/material/Rating';
 
 const moviesToWatchDB = database.ref('moviesToWatch/');
 
 function MoviesToWatch() {
 
     const [myMoviesToWatch, setMyMoviesToWatch] = useState([]);
+    const [movieDetails, setMovieDetails] = useState(null);
+    const [value, setValue] = useState(null);
 
     useEffect(() => {
         let dispose = moviesToWatchDB.on("value", function (snapshot) {
@@ -26,8 +30,21 @@ function MoviesToWatch() {
         database.ref(`moviesToWatch/${key}`).remove()
     }
 
+    const showMovieDetails = (movie) => {
+        setMovieDetails(movie)
+    }
+
+    const closeMovieDetails = () => {
+        setMovieDetails(null);
+        console.log(movieDetails);
+    }
+
     const handleWatched = (key, value) => {
-        database.ref(`moviesToWatch/${key}`).update({ watched: !value })
+        database.ref(`moviesToWatch/${key}`).update({ watched: !value, date: new Date().toDateString()})
+    }
+
+    const handleRating = (key, value) => {
+        database.ref(`moviesToWatch/${key}`).update({ rating: value })
     }
 
     return (
@@ -40,9 +57,20 @@ function MoviesToWatch() {
                 return (
                     <div className={movie.watched ? "towatch__item" : "towatch__item watched"} key={key}>
                         <p className="towatch__item-title">{movie.title}</p>
-                        <img className="towatch__item-poster" src={movie.poster} alt="movie poster"></img>
+                        <img className="towatch__item-poster" src={movie.poster} alt="movie poster" onClick={() => showMovieDetails(movie)}></img>
                         <p className="towatch__item-year">{movie.year}</p>
                         <p className="towatch__item-time">{movie.time}</p>
+                        { movie.watched &&
+                            <Rating
+                                className="towatch__item-rating"
+                                name="simple-controlled"
+                                value={movie.rating}
+                                onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                    handleRating(movie.id, newValue)
+                                }}
+                            />
+                        }
                         <div className="towatch__item-btns">
                             <button className="rmvbtn" onClick={() => removeMovie(movie.id)}>Delete</button>
                             <label className="checkbox-container">
@@ -50,6 +78,9 @@ function MoviesToWatch() {
                                 <span className="checkmark"></span>
                             </label>
                         </div>
+                        {movie.watched && movieDetails && movieDetails.id === movie.id && (
+                            <MovieDetails movie={movie} closeMovieDetails={closeMovieDetails} />
+                        )}
                     </div>
                 )
             })}

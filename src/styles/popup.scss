@@ -2,12 +2,15 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(52, 30, 78, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 
   .popup {
     background-color: #d4c9f0;
@@ -21,6 +24,7 @@
     padding-top: 160px;
     cursor: pointer;
     height: 100%;
+    position: relative;
 
     @media #{$small} {
       width: 80%;
@@ -33,13 +37,14 @@
       margin-top: 80px;
     }
 
-    &__close-img {
-      position: relative;
-      left: 45%;
+    @media #{$xsmall} {
+      padding-top: 30px;
+    }
 
-      @media #{$small} {
-        left: 60%;
-      }
+    &__close-img {
+      position: absolute;
+      right: 20px;
+      top: 20px;
     }
 
     &__img {

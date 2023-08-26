@@ -1,0 +1,51 @@
+.movie-details.popup-container {
+
+    .popup {
+        display: flex;
+        align-items: flex-start;
+
+        @media #{$xsmall} {
+            width: 100%;
+        }
+
+        &__close-img {
+            @media #{$xsmall} {
+                top: 10px;
+                right: 10px;
+           }
+        }
+    }
+}
+
+.movie-details {
+    &__poster {
+        width: 160px;
+        align-self: center;
+        margin-bottom: 20px;
+
+        @media #{$small} {
+            width: 200px;
+       }
+        img {
+            width: 100%;
+        }
+    }
+
+    &__date,
+    &__rating {
+        color: #4b3e95;
+        margin-bottom: 10px;
+
+        span {
+            font-weight: bold;
+        }
+    }
+
+    &__textfield {
+        width: 100%;
+        label, 
+        textarea {
+            font-family: $primary-font !important;
+        }
+    }
+}
